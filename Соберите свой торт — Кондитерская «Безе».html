@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Соберите свой торт — Кондитерская «Безе»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);
+  --bg:#FFF5F4;--card:#FFFFFF;--text:#3B201D;--muted:#86655F;--accent:#5A2E2A;--hl:#D93C63;--on-hl:#FFFFFF;--chip:#FBE7E6;--line:rgba(59,32,29,.12);--plate:#EADBD7;--stage:#FDE9EA;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1C1413;--card:#271C1A;--text:#F6E9E7;--muted:#C2A7A2;--accent:#F2B7C2;--hl:#E0456A;--chip:#3A2925;--line:rgba(246,233,231,.13);--plate:#4A3632;--stage:#2F211F;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1C1413;--card:#271C1A;--text:#F6E9E7;--muted:#C2A7A2;--accent:#F2B7C2;--hl:#E0456A;--chip:#3A2925;--line:rgba(246,233,231,.13);--plate:#4A3632;--stage:#2F211F;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:22px 16px 0}
+.shop{text-align:center;color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:0}
+h1{font:400 clamp(28px,7.5vw,40px)/1.15 Prata,Georgia,serif;text-align:center;margin:6px 0;color:var(--accent)}
+.lead{text-align:center;color:var(--muted);margin:0 0 20px}
+.layout{display:grid;gap:16px}
+.stage{background:var(--stage);border-radius:24px;padding:12px}
+.stage svg{display:block;width:100%;height:auto;max-height:300px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.step h2{font:700 15px Manrope,sans-serif;margin:0 0 10px;display:flex;justify-content:space-between;gap:8px}
+.step h2 span{color:var(--muted);font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:flex;align-items:center;gap:8px;border:1.5px solid transparent;background:var(--chip);color:var(--text);border-radius:12px;padding:8px 12px;cursor:pointer;font:500 14px/1.3 Manrope,sans-serif;text-align:left}
+.chip small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+.chip i{width:18px;height:18px;border-radius:50%;flex:none;border:1px solid var(--line);font-style:normal;display:grid;place-items:center;font-size:13px}
+.chip[aria-pressed="true"]{border-color:var(--hl);background:var(--card)}
+.chip[aria-pressed="true"] small{color:var(--hl)}
+input[type=range]{width:100%;accent-color:var(--hl)}
+.big{font:400 26px Prata,Georgia,serif;color:var(--accent)}
+input[type=date]{width:100%;font:500 16px Manrope,sans-serif;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.note{color:var(--muted);font-size:13px;margin:8px 0 0}
+button:focus-visible,input:focus-visible{outline:2px solid var(--hl);outline-offset:2px}
+.bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--line);margin-top:6px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 24px rgba(0,0,0,.06)}
+.bar .in{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.mini{width:56px;height:56px;border-radius:12px;background:var(--stage);flex:none;overflow:hidden}
+.mini svg{width:100%;height:100%}
+.total{flex:1}
+.total small{display:block;color:var(--muted);font-size:12px}
+.total b{font:400 26px Prata,Georgia,serif;color:var(--accent)}
+.cta{border:0;background:var(--hl);color:var(--on-hl);font:700 16px Manrope,sans-serif;padding:14px 18px;border-radius:14px;cursor:pointer}
+.done{text-align:center;padding:4px 0 40px;max-width:560px;margin:0 auto}
+.tg{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;text-align:left;margin:18px 0;white-space:pre-line;font-size:15px}
+.tg .who{font-weight:700;color:var(--accent);margin-bottom:6px;white-space:normal}
+.foot{text-align:center;color:var(--muted);font-size:13px;padding:20px 16px 26px}
+.foot b{color:var(--text)}
+.foot a{color:inherit;text-decoration:none}
+.pop{animation:pop .35s ease}@keyframes pop{50%{transform:scale(1.06)}}
+.grow{animation:grow .4s ease}@keyframes grow{from{opacity:.4;transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.pop,.grow{animation:none}}
+@media (min-width:860px){.layout{grid-template-columns:1fr 1fr;align-items:start}.stage{position:sticky;top:calc(16px + env(safe-area-inset-top,0px))}.stage svg{max-height:none}.mini{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="bar" id="bar"><div class="in">
+  <div class="mini" id="mini" aria-hidden="true"></div>
+  <div class="total"><small>Примерная стоимость</small><b id="total">0 ₽</b></div>
+  <button class="cta" id="send">Отправить заявку</button>
+</div></div>
+<p class="foot">Это демо. Хотите такой калькулятор под свой прайс?<br>Телеграм: <a href="https://t.me/darya_koshcheewa" target="_blank" rel="noopener"><b>@darya_koshcheewa</b></a><br>Трэдс: <a href="https://www.threads.com/@dashaka_dashaka" target="_blank" rel="noopener"><b>@dashaka_dashaka</b></a></p>
+<script>
+const rub=n=>Math.round(n).toLocaleString("ru-RU")+" ₽";
+const FILL=[["Шоколадный трюфель",2200,"#6B3A2E"],["Красный бархат",2100,"#B8323F"],["Ваниль и ягоды",2300,"#F3C6CE"],["Морковный",2000,"#E39A4F"],["Фисташка-малина",2600,"#A9C46C"]];
+const COAT=[["Крем-чиз",0],["Велюр",500],["Шоколадная глазурь",300]];
+const DECO=[["Свежие ягоды",600,"🍓"],["Надпись",300,"✍️"],["Живые цветы",800,"🌸"],["Топпер",400,"⭐"],["Фигурка",1200,"🧸"]];
+let s,sent=false;
+function init(){const d=new Date();d.setDate(d.getDate()+3);s={w:2,f:FILL[0],c:COAT[0],d:[],date:"",min:d.toISOString().slice(0,10)};sent=false}
+const price=()=>s.w*(s.f[1]+s.c[1])+s.d.reduce((a,o)=>a+o[1],0);
+const has=n=>s.d.some(o=>o[0]===n);
+
+function cake(){
+  const tiers=s.w<=2?1:s.w<=4?2:3,W=[210,160,112],H=s.w<=2?50+(s.w-1)*14:56,base=232;
+  const coat=s.c[0]==="Крем-чиз"?"#FFF6EE":s.c[0]==="Велюр"?s.f[2]:"#5A2E25";
+  const edge="rgba(59,32,29,.22)";let g="";
+  g+=`<ellipse cx="150" cy="${base+6}" rx="138" ry="12" fill="var(--plate)"/>`;
+  for(let i=0;i<tiers;i++){const w=W[i],x=150-w/2,y=base-(i+1)*H;
+    g+=`<rect x="${x}" y="${y}" width="${w}" height="${H}" rx="10" fill="${coat}" stroke="${edge}" stroke-width="1.5"/>`;
+    if(s.c[0]==="Крем-чиз"){g+=`<rect x="${x+6}" y="${y+H*.36}" width="${w-12}" height="6" rx="3" fill="${s.f[2]}" opacity=".75"/><rect x="${x+6}" y="${y+H*.66}" width="${w-12}" height="6" rx="3" fill="${s.f[2]}" opacity=".75"/>`}
+    if(s.c[0]==="Шоколадная глазурь"){g+=`<rect x="${x}" y="${y}" width="${w}" height="10" rx="6" fill="#3E1E17"/>`;for(let k=0;k<Math.floor(w/22);k++){g+=`<rect x="${x+8+k*22}" y="${y+4}" width="9" height="${10+((k*7)%3)*6}" rx="4.5" fill="#3E1E17"/>`}}
+  }
+  const tw=W[tiers-1],ty=base-tiers*H,tx=150-tw/2;
+  if(has("Надпись")){const by=base-H/2;g+=`<g class="grow"><rect x="95" y="${by-12}" width="110" height="24" rx="12" fill="#FFFFFF" stroke="${edge}"/><text x="150" y="${by+4}" text-anchor="middle" font-family="Prata,Georgia,serif" font-size="12" fill="#5A2E2A">С праздником!</text></g>`}
+  if(has("Топпер")){g+=`<g class="grow"><line x1="138" y1="${ty}" x2="138" y2="${ty-38}" stroke="#C9A35A" stroke-width="2"/><line x1="162" y1="${ty}" x2="162" y2="${ty-38}" stroke="#C9A35A" stroke-width="2"/><path d="M150 ${ty-62} l7 14 15 2 -11 10 3 15 -14 -7 -14 7 3 -15 -11 -10 15 -2z" fill="#E6A817"/></g>`}
+  if(has("Фигурка")){const x=tx+16,y=ty;g+=`<g class="grow"><circle cx="${x}" cy="${y-14}" r="13" fill="#A86B45"/><circle cx="${x}" cy="${y-36}" r="11" fill="#A86B45"/><circle cx="${x-9}" cy="${y-45}" r="4.5" fill="#A86B45"/><circle cx="${x+9}" cy="${y-45}" r="4.5" fill="#A86B45"/><circle cx="${x}" cy="${y-33}" r="4" fill="#E9C7A8"/><circle cx="${x-4}" cy="${y-38}" r="1.6" fill="#3B201D"/><circle cx="${x+4}" cy="${y-38}" r="1.6" fill="#3B201D"/></g>`}
+  if(has("Свежие ягоды")){let b="";const n=Math.max(5,Math.floor(tw/18));for(let k=0;k<n;k++){const x=tx+12+k*((tw-24)/(n-1));b+=`<circle cx="${x}" cy="${ty-5}" r="7" fill="${k%2?"#3B4CCA":"#D7263D"}"/>`+(k%2?"":`<path d="M${x-3} ${ty-12} l3 3 3 -3" stroke="#3E8E41" stroke-width="2" fill="none"/>`)}g+=`<g class="grow">${b}</g>`}
+  if(has("Живые цветы")){let f="";[[tx+tw-10,ty-4,13],[tx+tw-30,ty+2,10],[tx+tw+4,ty+14,9]].forEach(([x,y,r])=>{for(let k=0;k<5;k++){const a=k*1.2566;f+=`<circle cx="${x+Math.cos(a)*r*.6}" cy="${y+Math.sin(a)*r*.6}" r="${r*.55}" fill="#F48FB1"/>`}f+=`<circle cx="${x}" cy="${y}" r="${r*.35}" fill="#FFD54F"/>`});g+=`<g class="grow"><ellipse cx="${tx+tw-20}" cy="${ty+6}" rx="14" ry="5" fill="#5E8F5E" transform="rotate(-20 ${tx+tw-20} ${ty+6})"/>${f}</g>`}
+  return `<svg viewBox="0 0 300 260" role="img" aria-label="Так будет выглядеть ваш торт">${g}</svg>`;
+}
+
+function chip(group,o,k,on,icon,sub){return `<button class="chip" aria-pressed="${on}" data-g="${group}" data-k="${k}">${icon}<span>${o[0]}<small>${sub}</small></span></button>`}
+function render(){
+  const app=document.getElementById("app");document.getElementById("bar").style.display=sent?"none":"";
+  if(sent){app.innerHTML=`<div class="done"><p class="shop">Кондитерская «Безе»</p><h1>Заявка отправлена</h1><p class="lead">Спасибо! Кондитер скоро напишет вам, чтобы обсудить все детали</p>
+    <div class="stage">${cake()}</div>
+    <div class="tg"><div class="who">🔔 Так заявка придет кондитеру в Telegram</div>Новая заявка с сайта
+Торт ${String(s.w).replace(".",",")} кг, ${s.f[0].toLowerCase()}
+Покрытие: ${s.c[0].toLowerCase()}${s.d.length?"\nДекор: "+s.d.map(o=>o[0].toLowerCase()).join(", "):""}${s.date?"\nДата: "+new Date(s.date).toLocaleDateString("ru-RU",{day:"numeric",month:"long"}):""}
+Сумма: ${rub(price())}</div><button class="cta" id="again">Собрать еще один</button></div>`;
+    document.getElementById("again").onclick=()=>{init();render();scrollTo(0,0)};return}
+  app.innerHTML=`<p class="shop">Кондитерская «Безе»</p><h1>Соберите свой торт</h1><p class="lead">Расскажите, каким вы видите свой праздничный торт, а мы сразу покажем, как он будет выглядеть и сколько стоит</p>
+  <div class="layout"><div class="stage" id="stage">${cake()}</div><div>
+   <div class="step"><h2>Вес<span id="serv">≈ ${Math.round(s.w*1000/150)} порций</span></h2><div class="big" id="wv">${String(s.w).replace(".",",")} кг</div>
+    <input type="range" min="1" max="6" step=".5" value="${s.w}" id="w" aria-label="Вес торта"><p class="note">До 2 кг — один ярус, до 4 кг — два, больше — три</p></div>
+   <div class="step"><h2>Начинка</h2><div class="chips">${FILL.map((o,k)=>chip("f",o,k,s.f===o,`<i style="background:${o[2]}"></i>`,o[1]+" ₽/кг")).join("")}</div></div>
+   <div class="step"><h2>Покрытие</h2><div class="chips">${COAT.map((o,k)=>chip("c",o,k,s.c===o,`<i style="background:${k===0?"#FFF6EE":k===1?s.f[2]:"#5A2E25"}"></i>`,o[1]?"+"+o[1]+" ₽/кг":"входит в цену")).join("")}</div></div>
+   <div class="step"><h2>Декор<span>можно несколько</span></h2><div class="chips">${DECO.map((o,k)=>chip("d",o,k,s.d.includes(o),`<i style="border:0">${o[2]}</i>`,"+"+o[1]+" ₽")).join("")}</div></div>
+   <div class="step"><h2>Когда нужен</h2><input type="date" id="date" min="${s.min}" value="${s.date}" aria-label="Дата"><p class="note">Заказы принимаем минимум за 3 дня</p></div>
+  </div></div>`;
+  update(false);
+}
+function update(anim){
+  const svg=cake();const st=document.getElementById("stage");if(st)st.innerHTML=svg;document.getElementById("mini").innerHTML=svg;
+  const t=document.getElementById("total");t.textContent=rub(price());if(anim){t.classList.remove("pop");void t.offsetWidth;t.classList.add("pop")}
+}
+document.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;const k=+b.dataset.k,g=b.dataset.g;
+  if(g==="f"){s.f=FILL[k];render();update(true);return}
+  if(g==="c"){s.c=COAT[k]}else{const i=s.d.indexOf(DECO[k]);i<0?s.d.push(DECO[k]):s.d.splice(i,1)}
+  if(g==="c")b.parentNode.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));else b.setAttribute("aria-pressed",s.d.includes(DECO[k]));
+  update(true)});
+document.addEventListener("input",e=>{if(e.target.id==="w"){s.w=+e.target.value;document.getElementById("wv").textContent=String(s.w).replace(".",",")+" кг";document.getElementById("serv").textContent="≈ "+Math.round(s.w*1000/150)+" порций";update(true)}
+  if(e.target.id==="date")s.date=e.target.value});
+document.getElementById("send").onclick=()=>{sent=true;render();scrollTo(0,0)};
+init();render();
+</script>
+</body>
+</html>
